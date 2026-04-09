@@ -1,92 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vanessa's Babysitting Services</title>
-    <meta name="description" content="Safe, loving babysitting services. Caring for children with patience, kindness, and responsibility.">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vanessa Babysitting Services</title>
 
-    <script>
-        function openWhatsApp() {
-            window.open("https://wa.me/18768032970", "_blank");
-        }
-    </script>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff8f0;
+    color: #333;
+}
+
+/* HEADER */
+header {
+    background: #ffd6e0;
+    text-align: center;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+header p {
+    margin: 5px 0 0;
+}
+
+/* SECTIONS */
+section {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* CARDS */
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+}
+
+/* BUTTON */
+button {
+    background: #ff85a2;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #ff5f86;
+}
+
+/* BOOKING STATUS */
+#status {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* REVIEWS */
+.review {
+    border-left: 4px solid #ff85a2;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <h1>Vanessa's Babysitting Services</h1>
-    <p>Gentle Care • Safety • Love for Children</p>
+    <h1>Vanessa Babysitting Services</h1>
+    <p>Safe • Loving • Caring • Reliable</p>
 </header>
 
+<!-- ABOUT -->
 <section>
-    <h2>About Me</h2>
-    <p>
-        I am a calm, responsible, and caring babysitter who truly loves children.
-        I create a safe and peaceful environment where children feel protected,
-        happy, and understood. I treat every child with kindness, patience, and respect.
-    </p>
+    <div class="card">
+        <h2>About Me</h2>
+        <p>
+            I love taking care of children and making sure they feel safe, happy, and loved.
+            I am responsible, patient, and always follow instructions carefully.
+        </p>
+    </div>
 </section>
 
+<!-- SERVICES -->
 <section>
-    <h2>Services</h2>
-    <ul>
-        <li>Babysitting (Day & Night)</li>
-        <li>Storytelling & Playtime</li>
-        <li>Homework Help</li>
-        <li>Meal Assistance</li>
-        <li>Light Cleaning</li>
-    </ul>
+    <div class="card">
+        <h2>Services</h2>
+        <ul>
+            <li>Babysitting (Day & Night)</li>
+            <li>Homework Help</li>
+            <li>Meals for Kids</li>
+            <li>Play & Care Time</li>
+        </ul>
+    </div>
 </section>
 
+<!-- BOOKING SYSTEM -->
 <section>
-    <h2>Rates</h2>
-    <p>💛 $600 JMD per hour (Negotiable)</p>
+    <div class="card">
+        <h2>Book a Time</h2>
+
+        <p>Select Date:</p>
+        <input type="date" id="date">
+
+        <p>Select Time:</p>
+        <select id="time">
+            <option>8:00 AM</option>
+            <option>10:00 AM</option>
+            <option>12:00 PM</option>
+            <option>2:00 PM</option>
+            <option>4:00 PM</option>
+            <option>6:00 PM</option>
+            <option>8:00 PM</option>
+        </select>
+
+        <button onclick="checkAvailability()">Check Availability</button>
+
+        <p id="status"></p>
+
+        <button onclick="sendWhatsApp()">Book on WhatsApp</button>
+    </div>
 </section>
 
+<!-- REVIEWS -->
 <section>
-    <h2>Book a Babysitting Session</h2>
+    <div class="card">
+        <h2>Reviews</h2>
 
-    <form action="https://formsubmit.co/palmervanessa11200@gmail.com" method="POST">
-        <input type="text" name="name" placeholder="Parent Name" required>
-        <input type="text" name="child" placeholder="Child's Name & Age" required>
-        <input type="date" name="date" required>
-        <input type="time" name="time" required>
-        <textarea name="message" placeholder="Any special instructions..." required></textarea>
-
-        <button type="submit">Request Booking</button>
-    </form>
+        <div class="review">⭐ "Very caring and trustworthy babysitter!"</div>
+        <div class="review">⭐ "My kids love her, she is very patient."</div>
+        <div class="review">⭐ "Always on time and very responsible."</div>
+    </div>
 </section>
 
+<!-- CONTACT -->
 <section>
-    <h2>Parents Reviews</h2>
-
-    <p>⭐ “Very caring and patient with my child. Highly recommended.”</p>
-    <p>⭐ “I felt safe leaving my baby with her. Very responsible.”</p>
-    <p>⭐ “Kind, gentle, and trustworthy.”</p>
+    <div class="card">
+        <h2>Contact</h2>
+        <p>WhatsApp: 876-803-2970</p>
+        <p>Email: palmervanessa11200@gmail.com</p>
+    </div>
 </section>
 
-<section>
-    <h2>Contact Me</h2>
-    <p>📞 876-803-2970</p>
-    <p>📧 palmervanessa11200@gmail.com</p>
+<script>
+let bookedDates = []; // add dates like "2026-04-10"
 
-    <button onclick="openWhatsApp()">
-        💬 Chat on WhatsApp
-    </button>
-</section>
+function checkAvailability() {
+    let date = document.getElementById("date").value;
+    let status = document.getElementById("status");
 
-<div style="position: fixed; bottom: 20px; right: 20px;">
-    <button onclick="openWhatsApp()" class="whatsapp">
-        WhatsApp
-    </button>
-</div>
+    if (!date) {
+        status.innerHTML = "Please select a date";
+        status.style.color = "black";
+        return;
+    }
 
-<footer>
-    <p>© 2026 Vanessa's Babysitting Services • Caring with Love</p>
-</footer>
+    if (bookedDates.includes(date)) {
+        status.innerHTML = "🔴 Not Available";
+        status.style.color = "red";
+    } else {
+        status.innerHTML = "🟢 Available";
+        status.style.color = "green";
+    }
+}
+
+function sendWhatsApp() {
+    let date = document.getElementById("date").value;
+    let time = document.getElementById("time").value;
+
+    if (!date) {
+        alert("Please select a date first");
+        return;
+    }
+
+    let message = `Hi, I want to book babysitting for ${date} at ${time}`;
+    window.open(`https://wa.me/18768032970?text=${message}`, "_blank");
+}
+</script>
 
 </body>
 </html>
