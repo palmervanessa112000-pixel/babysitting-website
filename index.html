@@ -3,63 +3,103 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vanessa Babysitting Services</title>
+<title>Vanessa Care Babysitting Jamaica</title>
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #fff8f0;
-    color: #333;
+body{
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    background: linear-gradient(#fff7f0, #fffaf5);
+    color:#333;
 }
 
-header {
-    background: #ffd6e0;
-    text-align: center;
-    padding: 20px;
+/* HEADER */
+header{
+    background: linear-gradient(135deg,#ff8c42,#ffb347);
+    color:white;
+    text-align:center;
+    padding:25px;
 }
 
-header h1 {
-    margin: 0;
+header h1{
+    margin:0;
+    font-size:28px;
 }
 
-section {
-    padding: 20px;
-    max-width: 800px;
-    margin: auto;
+header p{
+    margin-top:5px;
+    font-size:14px;
 }
 
-.card {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+/* LAYOUT */
+section{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
 }
 
-button {
-    background: #ff85a2;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 8px;
-    margin-top: 10px;
-    cursor: pointer;
+/* CARDS */
+.card{
+    background:white;
+    padding:18px;
+    margin-bottom:15px;
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
 
-button:hover {
-    background: #ff5f86;
+/* INPUTS */
+input, select{
+    width:100%;
+    padding:10px;
+    margin-top:8px;
+    border-radius:8px;
+    border:1px solid #ccc;
 }
 
-#status, #show {
-    font-weight: bold;
-    margin-top: 10px;
+/* BUTTONS */
+button{
+    background:#ff7a00;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:10px;
+    cursor:pointer;
+    margin-top:8px;
+    width:100%;
 }
 
-.review {
-    border-left: 4px solid #ff85a2;
-    padding-left: 10px;
-    margin-bottom: 10px;
+button:hover{
+    background:#e66a00;
+}
+
+/* STATUS */
+#status{
+    font-weight:bold;
+    margin-top:10px;
+}
+
+/* GALLERY */
+.gallery img{
+    width:100%;
+    margin-top:10px;
+    border-radius:12px;
+}
+
+/* ADMIN */
+#adminPanel{
+    display:none;
+    background:#fff3e0;
+    padding:15px;
+    border-radius:12px;
+    margin-top:10px;
+}
+
+/* SMALL TEXT */
+small{
+    color:gray;
 }
 </style>
 </head>
@@ -67,147 +107,176 @@ button:hover {
 <body>
 
 <header>
-    <h1>Vanessa Babysitting Services</h1>
-    <p>Safe • Loving • Caring • Reliable</p>
+    <h1>Vanessa Care Babysitting 🇯🇲</h1>
+    <p>Safe • Loving • Trusted Care for Your Pickney 💕</p>
 </header>
 
-<!-- ABOUT -->
 <section>
-    <div class="card">
-        <h2>About Me</h2>
-        <p>I love taking care of children and making sure they are safe, happy, and loved.</p>
-    </div>
-</section>
+
+<!-- ABOUT -->
+<div class="card">
+    <h2>About Me</h2>
+    <p>
+       I am a dependable babysitter with strong responsibility, patience, and good communication skills. I enjoy helping children learn, play, and feel secure. I always prioritize safety, follow instructions carefully, and create a positive and caring environment for every child I look after.❤️
+    </p>
+</div>
+
+<!-- IMAGE UPLOAD -->
+<div class="card">
+    <h2>My Babysitting Moments 📸</h2>
+    <small>Upload your pictures here (click choose file)</small>
+    <input type="file" accept="image/*" onchange="addImage(event)">
+    <div class="gallery" id="gallery"></div>
+</div>
 
 <!-- SERVICES -->
-<section>
-    <div class="card">
-        <h2>Services</h2>
-        <ul>
-            <li>Babysitting (Day & Night)</li>
-            <li>Homework Help</li>
-            <li>Meals for kids</li>
-        </ul>
-    </div>
-</section>
+<div class="card">
+    <h2>Services</h2>
+    <ul>
+        <li>🧸 Babysitting (Day & Night)</li>
+        <li>📚 Homework Help</li>
+        <li>🍲 Light Meals</li>
+        <li>🎨 Play & Learning Activities</li>
+    </ul>
+</div>
 
 <!-- BOOKING -->
-<section>
-    <div class="card">
-        <h2>Book a Time</h2>
+<div class="card">
+    <h2>Check Availability</h2>
 
-        <input type="date" id="date">
+    <label>Date</label>
+    <input type="date" id="date">
 
-        <br><br>
+    <label>Time</label>
+    <select id="time">
+        <option>8:00 AM</option>
+        <option>10:00 AM</option>
+        <option>12:00 PM</option>
+        <option>2:00 PM</option>
+        <option>4:00 PM</option>
+        <option>6:00 PM</option>
+        <option>8:00 PM</option>
+    </select>
 
-        <select id="time">
-            <option>8:00 AM</option>
-            <option>10:00 AM</option>
-            <option>12:00 PM</option>
-            <option>2:00 PM</option>
-            <option>4:00 PM</option>
-            <option>6:00 PM</option>
-            <option>8:00 PM</option>
-        </select>
+    <button onclick="checkAvailability()">Check Availability</button>
+    <p id="status"></p>
 
-        <br>
-
-        <button onclick="checkAvailability()">Check Availability</button>
-
-        <p id="status"></p>
-
-        <button onclick="sendWhatsApp()">Book on WhatsApp</button>
-    </div>
-</section>
-
-<!-- AVAILABILITY CONTROL -->
-<section>
-    <div class="card">
-        <h2>My Availability (Admin Control)</h2>
-
-        <input type="date" id="mydate">
-
-        <br><br>
-
-        <button onclick="markFree()">Mark FREE 🟢</button>
-        <button onclick="markBusy()">Mark BUSY 🔴</button>
-
-        <p id="show"></p>
-    </div>
-</section>
+    <button onclick="bookWhatsApp()">Book on WhatsApp 📲</button>
+</div>
 
 <!-- REVIEWS -->
-<section>
-    <div class="card">
-        <h2>Reviews</h2>
-
-        <div class="review">⭐ Very caring and responsible babysitter</div>
-        <div class="review">⭐ My kids love her</div>
-        <div class="review">⭐ Always on time and trustworthy</div>
-    </div>
-</section>
+<div class="card">
+    <h2>Parent Reviews ⭐</h2>
+    <p>⭐ “Very loving and caring with my child.”</p>
+    <p>⭐ “Always punctual and reliable.”</p>
+    <p>⭐ “My kids feel safe with her.”</p>
+</div>
 
 <!-- CONTACT -->
-<section>
-    <div class="card">
-        <h2>Contact</h2>
-        <p>WhatsApp: 876-803-2970</p>
-        <p>Email: palmervanessa11200@gmail.com</p>
+<div class="card">
+    <h2>Contact</h2>
+    <p>📲 WhatsApp: 876-803-2970</p>
+    <p>📧 Email: palmervanessa11200@gmail.com</p>
+</div>
+
+<!-- ADMIN LOGIN -->
+<div class="card">
+    <h2>Admin Login 🔐</h2>
+
+    <input type="password" id="pass" placeholder="Enter admin password">
+    <button onclick="login()">Login</button>
+
+    <div id="adminPanel">
+        <h3>Mark Availability</h3>
+
+        <input type="date" id="adate">
+
+        <button onclick="setFree()">Set AVAILABLE 🟢</button>
+        <button onclick="setBusy()">Set NOT AVAILABLE 🔴</button>
     </div>
+</div>
+
 </section>
 
 <script>
-let data = {}; // stores availability
 
-// MARK FREE
-function markFree() {
-    let d = document.getElementById("mydate").value;
-    if (!d) return alert("Pick a date first");
+let availability = {};
 
-    data[d] = "free";
-    document.getElementById("show").innerHTML = "🟢 You are FREE on this date";
+/* IMAGE UPLOAD */
+function addImage(event){
+    let file = event.target.files[0];
+    let reader = new FileReader();
+
+    reader.onload = function(){
+        let img = document.createElement("img");
+        img.src = reader.result;
+        document.getElementById("gallery").appendChild(img);
+    }
+
+    reader.readAsDataURL(file);
 }
 
-// MARK BUSY
-function markBusy() {
-    let d = document.getElementById("mydate").value;
-    if (!d) return alert("Pick a date first");
-
-    data[d] = "busy";
-    document.getElementById("show").innerHTML = "🔴 You are BUSY on this date";
-}
-
-// CHECK AVAILABILITY (CUSTOMER)
-function checkAvailability() {
+/* CHECK AVAILABILITY */
+function checkAvailability(){
     let d = document.getElementById("date").value;
     let status = document.getElementById("status");
 
-    if (!d) return;
+    if(!d){
+        status.innerHTML = "Please select a date";
+        return;
+    }
 
-    if (data[d] === "free") {
+    if(availability[d] === "free"){
         status.innerHTML = "🟢 Available";
         status.style.color = "green";
     }
-    else if (data[d] === "busy") {
+    else if(availability[d] === "busy"){
         status.innerHTML = "🔴 Not Available";
         status.style.color = "red";
     }
-    else {
+    else{
         status.innerHTML = "⚪ Not set yet";
         status.style.color = "gray";
     }
 }
 
-// WHATSAPP BOOKING
-function sendWhatsApp() {
+/* WHATSAPP BOOKING */
+function bookWhatsApp(){
     let d = document.getElementById("date").value;
     let t = document.getElementById("time").value;
 
-    if (!d) return alert("Select a date");
+    if(!d){
+        alert("Please select a date first");
+        return;
+    }
 
-    let msg = `Hi, I want babysitting for ${d} at ${t}`;
+    let msg = `Hi, I would like babysitting for ${d} at ${t}`;
     window.open(`https://wa.me/18768032970?text=${msg}`, "_blank");
 }
+
+/* LOGIN */
+function login(){
+    let pass = document.getElementById("pass").value;
+
+    if(pass === "TRUEDOUGLAS876"){
+        document.getElementById("adminPanel").style.display = "block";
+        alert("Admin access granted");
+    } else {
+        alert("Wrong password");
+    }
+}
+
+/* ADMIN CONTROL */
+function setFree(){
+    let d = document.getElementById("adate").value;
+    if(d) availability[d] = "free";
+}
+
+function setBusy(){
+    let d = document.getElementById("adate").value;
+    if(d) availability[d] = "busy";
+}
+
 </script>
 
 </body>
