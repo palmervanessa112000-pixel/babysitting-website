@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanessa's Babysitting Services</title>
+    <meta name="description" content="Safe, loving babysitting services. Caring for children with patience, kindness, and responsibility.">
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        function openWhatsApp() {
+            window.open("https://wa.me/18768032970", "_blank");
+        }
+    </script>
+</head>
+
+<body>
+
+<header>
+    <h1>Vanessa's Babysitting Services</h1>
+    <p>Gentle Care • Safety • Love for Children</p>
+</header>
+
+<section>
+    <h2>About Me</h2>
+    <p>
+        I am a calm, responsible, and caring babysitter who truly loves children.
+        I create a safe and peaceful environment where children feel protected,
+        happy, and understood. I treat every child with kindness, patience, and respect.
+    </p>
+</section>
+
+<section>
+    <h2>Services</h2>
+    <ul>
+        <li>Babysitting (Day & Night)</li>
+        <li>Storytelling & Playtime</li>
+        <li>Homework Help</li>
+        <li>Meal Assistance</li>
+        <li>Light Cleaning</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Rates</h2>
+    <p>💛 $600 JMD per hour (Negotiable)</p>
+</section>
+
+<section>
+    <h2>Book a Babysitting Session</h2>
+
+    <form action="https://formsubmit.co/palmervanessa11200@gmail.com" method="POST">
+        <input type="text" name="name" placeholder="Parent Name" required>
+        <input type="text" name="child" placeholder="Child's Name & Age" required>
+        <input type="date" name="date" required>
+        <input type="time" name="time" required>
+        <textarea name="message" placeholder="Any special instructions..." required></textarea>
+
+        <button type="submit">Request Booking</button>
+    </form>
+</section>
+
+<section>
+    <h2>Parents Reviews</h2>
+
+    <p>⭐ “Very caring and patient with my child. Highly recommended.”</p>
+    <p>⭐ “I felt safe leaving my baby with her. Very responsible.”</p>
+    <p>⭐ “Kind, gentle, and trustworthy.”</p>
+</section>
+
+<section>
+    <h2>Contact Me</h2>
+    <p>📞 876-803-2970</p>
+    <p>📧 palmervanessa11200@gmail.com</p>
+
+    <button onclick="openWhatsApp()">
+        💬 Chat on WhatsApp
+    </button>
+</section>
+
+<div style="position: fixed; bottom: 20px; right: 20px;">
+    <button onclick="openWhatsApp()" class="whatsapp">
+        WhatsApp
+    </button>
+</div>
+
+<footer>
+    <p>© 2026 Vanessa's Babysitting Services • Caring with Love</p>
+</footer>
+
+</body>
+</html>
