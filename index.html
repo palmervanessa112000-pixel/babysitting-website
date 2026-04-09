@@ -81,13 +81,6 @@ button:hover{
     margin-top:10px;
 }
 
-/* GALLERY */
-.gallery img{
-    width:100%;
-    margin-top:10px;
-    border-radius:12px;
-}
-
 /* ADMIN */
 #adminPanel{
     display:none;
@@ -100,6 +93,24 @@ button:hover{
 /* SMALL TEXT */
 small{
     color:gray;
+}
+
+/* PRICING TABLE */
+table{
+    width:100%;
+    border-collapse: collapse;
+    margin-top:10px;
+}
+
+th, td{
+    border:1px solid #ccc;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#ffb347;
+    color:white;
 }
 </style>
 </head>
@@ -117,51 +128,86 @@ small{
 <div class="card">
     <h2>About Me</h2>
     <p>
-       I am a dependable babysitter with strong responsibility, patience, and good communication skills. I enjoy helping children learn, play, and feel secure. I always prioritize safety, follow instructions carefully, and create a positive and caring environment for every child I look after.❤️
+       Hi! I’m Vanessa, a dedicated babysitter with over 10 years of experience caring for toddlers and children aged 5–10. I provide a safe, fun, and loving environment where your child can learn, play, and grow. I am available mornings, evenings, and nights, and serve families in St. Catherine, Kingston, and St. Andrew. Safety and trust are my top priorities, and I am happy to provide references on request.❤️
     </p>
 </div>
 
-<!-- IMAGE UPLOAD -->
+<!-- SERVICES & PRICING -->
 <div class="card">
-    <h2>My Babysitting Moments 📸</h2>
-    <small>Upload your pictures here (click choose file)</small>
-    <input type="file" accept="image/*" onchange="addImage(event)">
-    <div class="gallery" id="gallery"></div>
-</div>
-
-<!-- SERVICES -->
-<div class="card">
-    <h2>Services</h2>
+    <h2>Services & Pricing</h2>
     <ul>
         <li>🧸 Babysitting (Day & Night)</li>
         <li>📚 Homework Help</li>
         <li>🍲 Light Meals</li>
         <li>🎨 Play & Learning Activities</li>
     </ul>
+
+    <table>
+        <tr>
+            <th>Service</th>
+            <th>Standard Time</th>
+            <th>Rate (JMD)</th>
+            <th>Extra Time</th>
+        </tr>
+        <tr>
+            <td>Hourly Care</td>
+            <td>1 hour</td>
+            <td>1,300</td>
+            <td>650 per 30 min</td>
+        </tr>
+        <tr>
+            <td>Half-Day Care</td>
+            <td>4 hours</td>
+            <td>4,500</td>
+            <td>1,100 per extra hour</td>
+        </tr>
+        <tr>
+            <td>Full-Day Care</td>
+            <td>8 hours</td>
+            <td>9,000</td>
+            <td>1,200 per extra hour</td>
+        </tr>
+        <tr>
+            <td>Emergency / Variable</td>
+            <td>As needed</td>
+            <td>1,500+</td>
+            <td>750 per 30 min</td>
+        </tr>
+    </table>
 </div>
 
 <!-- BOOKING -->
 <div class="card">
-    <h2>Check Availability</h2>
+    <h2>Check Availability & Book</h2>
 
-    <label>Date</label>
-    <input type="date" id="date">
+<label>Full Name</label>
+<input type="text" id="name">
 
-    <label>Time</label>
-    <select id="time">
-        <option>8:00 AM</option>
-        <option>10:00 AM</option>
-        <option>12:00 PM</option>
-        <option>2:00 PM</option>
-        <option>4:00 PM</option>
-        <option>6:00 PM</option>
-        <option>8:00 PM</option>
-    </select>
+<label>Date</label>
+<input type="date" id="date">
 
-    <button onclick="checkAvailability()">Check Availability</button>
-    <p id="status"></p>
+<label>Time</label>
+<select id="time">
+    <option>8:00 AM</option>
+    <option>10:00 AM</option>
+    <option>12:00 PM</option>
+    <option>2:00 PM</option>
+    <option>4:00 PM</option>
+    <option>6:00 PM</option>
+    <option>8:00 PM</option>
+</select>
 
-    <button onclick="bookWhatsApp()">Book on WhatsApp 📲</button>
+<label>Service Type</label>
+<select id="service">
+    <option>Hourly Care</option>
+    <option>Half-Day Care</option>
+    <option>Full-Day Care</option>
+</select>
+
+<button onclick="checkAvailability()">Check Availability</button>
+<p id="status"></p>
+
+<button onclick="bookWhatsApp()">Book on WhatsApp 📲</button>
 </div>
 
 <!-- REVIEWS -->
@@ -202,20 +248,6 @@ small{
 
 let availability = {};
 
-/* IMAGE UPLOAD */
-function addImage(event){
-    let file = event.target.files[0];
-    let reader = new FileReader();
-
-    reader.onload = function(){
-        let img = document.createElement("img");
-        img.src = reader.result;
-        document.getElementById("gallery").appendChild(img);
-    }
-
-    reader.readAsDataURL(file);
-}
-
 /* CHECK AVAILABILITY */
 function checkAvailability(){
     let d = document.getElementById("date").value;
@@ -223,6 +255,7 @@ function checkAvailability(){
 
     if(!d){
         status.innerHTML = "Please select a date";
+        status.style.color = "gray";
         return;
     }
 
@@ -244,14 +277,16 @@ function checkAvailability(){
 function bookWhatsApp(){
     let d = document.getElementById("date").value;
     let t = document.getElementById("time").value;
+    let service = document.getElementById("service").value;
+    let name = document.getElementById("name").value;
 
-    if(!d){
-        alert("Please select a date first");
+    if(!name || !d || !t){
+        alert("Please fill in your name, date and time");
         return;
     }
 
-    let msg = `Hi, I would like babysitting for ${d} at ${t}`;
-    window.open(`https://wa.me/18768032970?text=${msg}`, "_blank");
+    let msg = `Hi, I would like babysitting on ${d} at ${t} (${service}). Parent: ${name}`;
+    window.open(`https://wa.me/18768032970?text=${encodeURIComponent(msg)}`, "_blank");
 }
 
 /* LOGIN */
@@ -280,4 +315,5 @@ function setBusy(){
 </script>
 
 </body>
+</html>
 </html>
