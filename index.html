@@ -81,15 +81,6 @@ button:hover{
     margin-top:10px;
 }
 
-/* ADMIN */
-#adminPanel{
-    display:none;
-    background:#fff3e0;
-    padding:15px;
-    border-radius:12px;
-    margin-top:10px;
-}
-
 /* SMALL TEXT */
 small{
     color:gray;
@@ -178,7 +169,7 @@ th{
 
 <!-- BOOKING -->
 <div class="card">
-    <h2>Check Availability & Book</h2>
+    <h2>Book via WhatsApp or Call</h2>
 
 <label>Full Name</label>
 <input type="text" id="name">
@@ -204,10 +195,19 @@ th{
     <option>Full-Day Care</option>
 </select>
 
-<button onclick="checkAvailability()">Check Availability</button>
-<p id="status"></p>
+<p id="status">Availability confirmed on WhatsApp. Please contact me before arriving.</p>
 
 <button onclick="bookWhatsApp()">Book on WhatsApp 📲</button>
+<button onclick="callMe()">Call Me 📞</button>
+</div>
+
+<!-- FAQ -->
+<div class="card">
+    <h2>FAQ ❓</h2>
+    <p><strong>Do you accept last-minute bookings?</strong><br>Yes! I can accommodate emergencies, but availability must be confirmed via WhatsApp or call.</p>
+    <p><strong>How long can my child stay?</strong><br>Flexible: Hourly, Half-Day, or Full-Day options. Extra time is billed in 30-minute increments.</p>
+    <p><strong>Do you prepare meals?</strong><br>Yes, light meals and snacks can be provided during the care session.</p>
+    <p><strong>Do you handle special needs or allergies?</strong><br>Absolutely. Please provide details via WhatsApp or call before the session.</p>
 </div>
 
 <!-- REVIEWS -->
@@ -225,54 +225,9 @@ th{
     <p>📧 Email: palmervanessa11200@gmail.com</p>
 </div>
 
-<!-- ADMIN LOGIN -->
-<div class="card">
-    <h2>Admin Login 🔐</h2>
-
-    <input type="password" id="pass" placeholder="Enter admin password">
-    <button onclick="login()">Login</button>
-
-    <div id="adminPanel">
-        <h3>Mark Availability</h3>
-
-        <input type="date" id="adate">
-
-        <button onclick="setFree()">Set AVAILABLE 🟢</button>
-        <button onclick="setBusy()">Set NOT AVAILABLE 🔴</button>
-    </div>
-</div>
-
 </section>
 
 <script>
-
-let availability = {};
-
-/* CHECK AVAILABILITY */
-function checkAvailability(){
-    let d = document.getElementById("date").value;
-    let status = document.getElementById("status");
-
-    if(!d){
-        status.innerHTML = "Please select a date";
-        status.style.color = "gray";
-        return;
-    }
-
-    if(availability[d] === "free"){
-        status.innerHTML = "🟢 Available";
-        status.style.color = "green";
-    }
-    else if(availability[d] === "busy"){
-        status.innerHTML = "🔴 Not Available";
-        status.style.color = "red";
-    }
-    else{
-        status.innerHTML = "⚪ Not set yet";
-        status.style.color = "gray";
-    }
-}
-
 /* WHATSAPP BOOKING */
 function bookWhatsApp(){
     let d = document.getElementById("date").value;
@@ -289,31 +244,11 @@ function bookWhatsApp(){
     window.open(`https://wa.me/18768032970?text=${encodeURIComponent(msg)}`, "_blank");
 }
 
-/* LOGIN */
-function login(){
-    let pass = document.getElementById("pass").value;
-
-    if(pass === "TRUEDOUGLAS876"){
-        document.getElementById("adminPanel").style.display = "block";
-        alert("Admin access granted");
-    } else {
-        alert("Wrong password");
-    }
+/* CALL BUTTON */
+function callMe(){
+    window.location.href = "tel:8768032970";
 }
-
-/* ADMIN CONTROL */
-function setFree(){
-    let d = document.getElementById("adate").value;
-    if(d) availability[d] = "free";
-}
-
-function setBusy(){
-    let d = document.getElementById("adate").value;
-    if(d) availability[d] = "busy";
-}
-
 </script>
 
 </body>
-</html>
 </html>
