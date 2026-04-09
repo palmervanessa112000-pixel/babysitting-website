@@ -13,7 +13,6 @@ body {
     color: #333;
 }
 
-/* HEADER */
 header {
     background: #ffd6e0;
     text-align: center;
@@ -22,51 +21,41 @@ header {
 
 header h1 {
     margin: 0;
-    font-size: 28px;
 }
 
-header p {
-    margin: 5px 0 0;
-}
-
-/* SECTIONS */
 section {
     padding: 20px;
     max-width: 800px;
     margin: auto;
 }
 
-/* CARDS */
 .card {
     background: white;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* BUTTON */
 button {
     background: #ff85a2;
     color: white;
     border: none;
     padding: 10px;
     border-radius: 8px;
-    cursor: pointer;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 button:hover {
     background: #ff5f86;
 }
 
-/* BOOKING STATUS */
-#status {
+#status, #show {
     font-weight: bold;
     margin-top: 10px;
 }
 
-/* REVIEWS */
 .review {
     border-left: 4px solid #ff85a2;
     padding-left: 10px;
@@ -86,10 +75,7 @@ button:hover {
 <section>
     <div class="card">
         <h2>About Me</h2>
-        <p>
-            I love taking care of children and making sure they feel safe, happy, and loved.
-            I am responsible, patient, and always follow instructions carefully.
-        </p>
+        <p>I love taking care of children and making sure they are safe, happy, and loved.</p>
     </div>
 </section>
 
@@ -100,21 +86,20 @@ button:hover {
         <ul>
             <li>Babysitting (Day & Night)</li>
             <li>Homework Help</li>
-            <li>Meals for Kids</li>
-            <li>Play & Care Time</li>
+            <li>Meals for kids</li>
         </ul>
     </div>
 </section>
 
-<!-- BOOKING SYSTEM -->
+<!-- BOOKING -->
 <section>
     <div class="card">
         <h2>Book a Time</h2>
 
-        <p>Select Date:</p>
         <input type="date" id="date">
 
-        <p>Select Time:</p>
+        <br><br>
+
         <select id="time">
             <option>8:00 AM</option>
             <option>10:00 AM</option>
@@ -125,6 +110,8 @@ button:hover {
             <option>8:00 PM</option>
         </select>
 
+        <br>
+
         <button onclick="checkAvailability()">Check Availability</button>
 
         <p id="status"></p>
@@ -133,14 +120,30 @@ button:hover {
     </div>
 </section>
 
+<!-- AVAILABILITY CONTROL -->
+<section>
+    <div class="card">
+        <h2>My Availability (Admin Control)</h2>
+
+        <input type="date" id="mydate">
+
+        <br><br>
+
+        <button onclick="markFree()">Mark FREE 🟢</button>
+        <button onclick="markBusy()">Mark BUSY 🔴</button>
+
+        <p id="show"></p>
+    </div>
+</section>
+
 <!-- REVIEWS -->
 <section>
     <div class="card">
         <h2>Reviews</h2>
 
-        <div class="review">⭐ "Very caring and trustworthy babysitter!"</div>
-        <div class="review">⭐ "My kids love her, she is very patient."</div>
-        <div class="review">⭐ "Always on time and very responsible."</div>
+        <div class="review">⭐ Very caring and responsible babysitter</div>
+        <div class="review">⭐ My kids love her</div>
+        <div class="review">⭐ Always on time and trustworthy</div>
     </div>
 </section>
 
@@ -154,38 +157,56 @@ button:hover {
 </section>
 
 <script>
-let bookedDates = []; // add dates like "2026-04-10"
+let data = {}; // stores availability
 
+// MARK FREE
+function markFree() {
+    let d = document.getElementById("mydate").value;
+    if (!d) return alert("Pick a date first");
+
+    data[d] = "free";
+    document.getElementById("show").innerHTML = "🟢 You are FREE on this date";
+}
+
+// MARK BUSY
+function markBusy() {
+    let d = document.getElementById("mydate").value;
+    if (!d) return alert("Pick a date first");
+
+    data[d] = "busy";
+    document.getElementById("show").innerHTML = "🔴 You are BUSY on this date";
+}
+
+// CHECK AVAILABILITY (CUSTOMER)
 function checkAvailability() {
-    let date = document.getElementById("date").value;
+    let d = document.getElementById("date").value;
     let status = document.getElementById("status");
 
-    if (!date) {
-        status.innerHTML = "Please select a date";
-        status.style.color = "black";
-        return;
-    }
+    if (!d) return;
 
-    if (bookedDates.includes(date)) {
-        status.innerHTML = "🔴 Not Available";
-        status.style.color = "red";
-    } else {
+    if (data[d] === "free") {
         status.innerHTML = "🟢 Available";
         status.style.color = "green";
     }
+    else if (data[d] === "busy") {
+        status.innerHTML = "🔴 Not Available";
+        status.style.color = "red";
+    }
+    else {
+        status.innerHTML = "⚪ Not set yet";
+        status.style.color = "gray";
+    }
 }
 
+// WHATSAPP BOOKING
 function sendWhatsApp() {
-    let date = document.getElementById("date").value;
-    let time = document.getElementById("time").value;
+    let d = document.getElementById("date").value;
+    let t = document.getElementById("time").value;
 
-    if (!date) {
-        alert("Please select a date first");
-        return;
-    }
+    if (!d) return alert("Select a date");
 
-    let message = `Hi, I want to book babysitting for ${date} at ${time}`;
-    window.open(`https://wa.me/18768032970?text=${message}`, "_blank");
+    let msg = `Hi, I want babysitting for ${d} at ${t}`;
+    window.open(`https://wa.me/18768032970?text=${msg}`, "_blank");
 }
 </script>
 
